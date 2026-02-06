@@ -44,6 +44,9 @@
             groupBox2 = new GroupBox();
             dataGridView1 = new DataGridView();
             groupBox1 = new GroupBox();
+            btnThemAnh = new Button();
+            btnDoiHinh = new Button();
+            picHinhAnh = new PictureBox();
             cboLoaiPhong = new ComboBox();
             IDPhong = new DataGridViewTextBoxColumn();
             TenPhong = new DataGridViewTextBoxColumn();
@@ -51,9 +54,11 @@
             TrangThai = new DataGridViewTextBoxColumn();
             SucChua = new DataGridViewTextBoxColumn();
             GiaGio = new DataGridViewTextBoxColumn();
+            HinhAnh = new DataGridViewImageColumn();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picHinhAnh).BeginInit();
             SuspendLayout();
             // 
             // sqlCommand1
@@ -82,7 +87,7 @@
             // 
             // btnThoat
             // 
-            btnThoat.Location = new Point(1406, 261);
+            btnThoat.Location = new Point(1683, 404);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(237, 55);
             btnThoat.TabIndex = 11;
@@ -92,7 +97,7 @@
             // 
             // btnHuyBo
             // 
-            btnHuyBo.Location = new Point(1086, 262);
+            btnHuyBo.Location = new Point(1363, 405);
             btnHuyBo.Name = "btnHuyBo";
             btnHuyBo.Size = new Size(237, 55);
             btnHuyBo.TabIndex = 10;
@@ -103,7 +108,7 @@
             // btnLuu
             // 
             btnLuu.ForeColor = Color.DeepSkyBlue;
-            btnLuu.Location = new Point(1406, 161);
+            btnLuu.Location = new Point(1043, 405);
             btnLuu.Name = "btnLuu";
             btnLuu.Size = new Size(237, 55);
             btnLuu.TabIndex = 9;
@@ -114,7 +119,7 @@
             // btnXoa
             // 
             btnXoa.ForeColor = Color.Red;
-            btnXoa.Location = new Point(1086, 160);
+            btnXoa.Location = new Point(723, 404);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(237, 55);
             btnXoa.TabIndex = 8;
@@ -124,7 +129,7 @@
             // 
             // btnSua
             // 
-            btnSua.Location = new Point(1406, 58);
+            btnSua.Location = new Point(404, 403);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(237, 55);
             btnSua.TabIndex = 7;
@@ -134,7 +139,7 @@
             // 
             // btnThem
             // 
-            btnThem.Location = new Point(1086, 59);
+            btnThem.Location = new Point(84, 404);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(237, 55);
             btnThem.TabIndex = 6;
@@ -183,9 +188,9 @@
             // groupBox2
             // 
             groupBox2.Controls.Add(dataGridView1);
-            groupBox2.Location = new Point(26, 394);
+            groupBox2.Location = new Point(26, 570);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1722, 722);
+            groupBox2.Size = new Size(2070, 722);
             groupBox2.TabIndex = 9;
             groupBox2.TabStop = false;
             groupBox2.Text = "Danh sách khuyến mãi";
@@ -196,17 +201,21 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { IDPhong, TenPhong, LoaiPhong, TrangThai, SucChua, GiaGio });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { IDPhong, TenPhong, LoaiPhong, TrangThai, SucChua, GiaGio, HinhAnh });
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(3, 40);
             dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 82;
-            dataGridView1.Size = new Size(1716, 679);
+            dataGridView1.Size = new Size(2064, 679);
             dataGridView1.TabIndex = 1;
+            dataGridView1.CellFormatting += dataGridView1_CellFormatting;
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(btnThemAnh);
+            groupBox1.Controls.Add(btnDoiHinh);
+            groupBox1.Controls.Add(picHinhAnh);
             groupBox1.Controls.Add(cboLoaiPhong);
             groupBox1.Controls.Add(txtTrangThai);
             groupBox1.Controls.Add(label4);
@@ -224,10 +233,39 @@
             groupBox1.Margin = new Padding(4, 3, 4, 3);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(4, 3, 4, 3);
-            groupBox1.Size = new Size(1722, 367);
+            groupBox1.Size = new Size(2067, 512);
             groupBox1.TabIndex = 8;
             groupBox1.TabStop = false;
             groupBox1.Text = "Thông tin phòng";
+            // 
+            // btnThemAnh
+            // 
+            btnThemAnh.Location = new Point(1477, 134);
+            btnThemAnh.Name = "btnThemAnh";
+            btnThemAnh.Size = new Size(166, 55);
+            btnThemAnh.TabIndex = 17;
+            btnThemAnh.Text = "Thêm ảnh";
+            btnThemAnh.UseVisualStyleBackColor = true;
+            btnThemAnh.Click += btnThemAnh_Click;
+            // 
+            // btnDoiHinh
+            // 
+            btnDoiHinh.Location = new Point(1477, 58);
+            btnDoiHinh.Name = "btnDoiHinh";
+            btnDoiHinh.Size = new Size(166, 55);
+            btnDoiHinh.TabIndex = 16;
+            btnDoiHinh.Text = "Đổi";
+            btnDoiHinh.UseVisualStyleBackColor = true;
+            btnDoiHinh.Click += btnDoiHinh_Click;
+            // 
+            // picHinhAnh
+            // 
+            picHinhAnh.Location = new Point(1086, 58);
+            picHinhAnh.Name = "picHinhAnh";
+            picHinhAnh.Size = new Size(365, 253);
+            picHinhAnh.SizeMode = PictureBoxSizeMode.StretchImage;
+            picHinhAnh.TabIndex = 15;
+            picHinhAnh.TabStop = false;
             // 
             // cboLoaiPhong
             // 
@@ -279,11 +317,18 @@
             GiaGio.MinimumWidth = 10;
             GiaGio.Name = "GiaGio";
             // 
+            // HinhAnh
+            // 
+            HinhAnh.DataPropertyName = "HinhAnh";
+            HinhAnh.HeaderText = "Hình ảnh";
+            HinhAnh.MinimumWidth = 10;
+            HinhAnh.Name = "HinhAnh";
+            // 
             // frmPhong
             // 
             AutoScaleDimensions = new SizeF(19F, 36F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1777, 1150);
+            ClientSize = new Size(2126, 1331);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
@@ -295,6 +340,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picHinhAnh).EndInit();
             ResumeLayout(false);
         }
 
@@ -317,11 +363,15 @@
         private GroupBox groupBox1;
         private ComboBox cboLoaiPhong;
         private DataGridView dataGridView1;
+        private PictureBox picHinhAnh;
+        private Button btnDoiHinh;
+        private Button btnThemAnh;
         private DataGridViewTextBoxColumn IDPhong;
         private DataGridViewTextBoxColumn TenPhong;
         private DataGridViewTextBoxColumn LoaiPhong;
         private DataGridViewTextBoxColumn TrangThai;
         private DataGridViewTextBoxColumn SucChua;
         private DataGridViewTextBoxColumn GiaGio;
+        private DataGridViewImageColumn HinhAnh;
     }
 }

@@ -13,6 +13,7 @@ namespace DoAn_GiaiDoan1.Data
         public string TenPhong{ get; set;}
         public int LoaiPhongID { get; set;}
         public string TrangThai { get; set;}
+        public string? HinhAnh { get; set; }
 
         public virtual LoaiPhong LoaiPhong { get; set; } = null!;
 

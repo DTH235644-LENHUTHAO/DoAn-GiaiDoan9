@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using DoAn_GiaiDoan1.Helpers;
 
 namespace DoAn_GiaiDoan1.Forms
 {
@@ -22,6 +24,8 @@ namespace DoAn_GiaiDoan1.Forms
         QLQKDbContext context = new QLQKDbContext();
         bool xulyThem = false;
         int id;
+        string imagesFolder = Application.StartupPath.Replace("bin\\Debug\\net5.0-windows", "Images");
+        string hinhAnhTam = "";
 
         private void BatTatChucNang(bool giaTri)
         {
@@ -30,9 +34,11 @@ namespace DoAn_GiaiDoan1.Forms
             txtTenPhong.Enabled = giaTri;
             cboLoaiPhong.Enabled = giaTri;
             txtTrangThai.Enabled = giaTri;
+            picHinhAnh.Enabled = giaTri;
             btnThem.Enabled = !giaTri;
             btnSua.Enabled = !giaTri;
             btnXoa.Enabled = !giaTri;
+            btnDoiHinh.Enabled = giaTri ;
         }
 
         private void frmPhong_Load(object sender, EventArgs e)
@@ -40,7 +46,8 @@ namespace DoAn_GiaiDoan1.Forms
 
             BatTatChucNang(false);
 
-           
+            dataGridView1.AutoGenerateColumns = false;
+
             cboLoaiPhong.DataSource = context.LoaiPhong.ToList();
             cboLoaiPhong.DisplayMember = "TenLoaiPhong";
             cboLoaiPhong.ValueMember = "ID";
@@ -53,6 +60,7 @@ namespace DoAn_GiaiDoan1.Forms
                     p.TenPhong,
                     p.TrangThai,
                     p.LoaiPhongID,
+                    p.HinhAnh,
                     LoaiPhong = p.LoaiPhong.TenLoaiPhong,
                     SucChua = p.LoaiPhong.SucChua,
                     GiaGio = p.LoaiPhong.GiaGio
@@ -71,11 +79,17 @@ namespace DoAn_GiaiDoan1.Forms
             cboLoaiPhong.DataBindings.Clear();
             cboLoaiPhong.DataBindings.Add("SelectedValue", bs, "LoaiPhongID", false, DataSourceUpdateMode.Never);
 
-            
-
+            picHinhAnh.DataBindings.Clear();
+            Binding hinhAnh = new Binding("ImageLocation", bs, "HinhAnh", false, DataSourceUpdateMode.Never);
+            hinhAnh.Format += (s, e) =>
+            {
+                if (e.Value != null)
+                    e.Value = Path.Combine(imagesFolder, e.Value.ToString());
+            };
+            picHinhAnh.DataBindings.Add(hinhAnh);
 
             dataGridView1.DataSource = bs;
-            dataGridView1.Columns["LoaiPhongID"].Visible = false;
+
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -86,6 +100,8 @@ namespace DoAn_GiaiDoan1.Forms
             txtTenPhong.Clear();
             txtTrangThai.Clear();
             cboLoaiPhong.SelectedIndex = -1;
+            picHinhAnh.Image = null;
+            hinhAnhTam = "";
         }
 
         private void btnSua_Click(object sender, EventArgs e)
@@ -93,7 +109,7 @@ namespace DoAn_GiaiDoan1.Forms
             xulyThem = false;
             BatTatChucNang(true);
 
-            id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["ID"].Value);
+            id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["IDPhong"].Value);
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
@@ -109,6 +125,7 @@ namespace DoAn_GiaiDoan1.Forms
                     p.TenPhong = txtTenPhong.Text;
                     p.TrangThai = txtTrangThai.Text;
                     p.LoaiPhongID = (int)cboLoaiPhong.SelectedValue;
+                    p.HinhAnh = hinhAnhTam;
                     context.Phong.Add(p);
                     context.SaveChanges();
                 }
@@ -120,6 +137,7 @@ namespace DoAn_GiaiDoan1.Forms
                         p.TenPhong = txtTenPhong.Text;
                         p.TrangThai = txtTrangThai.Text;
                         p.LoaiPhongID = (int)cboLoaiPhong.SelectedValue;
+                        p.HinhAnh = hinhAnhTam;
                         context.Phong.Add(p);
                         context.SaveChanges();
                     }
@@ -132,7 +150,7 @@ namespace DoAn_GiaiDoan1.Forms
         {
             if (MessageBox.Show("Xác nhận xóa phòng?", "Xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["ID"].Value.ToString());
+                id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["IDPhong"].Value.ToString());
                 Phong p = context.Phong.Find(id);
                 if (p != null)
                 {
@@ -154,6 +172,62 @@ namespace DoAn_GiaiDoan1.Forms
             if (result == DialogResult.Yes)
             {
                 this.Close();
+            }
+        }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "HinhAnh" && e.Value != null)
+            {
+                string path = Path.Combine(imagesFolder, e.Value.ToString());
+                if (File.Exists(path))
+                {
+                    Image img = Image.FromFile(path);
+                    e.Value = new Bitmap(img, 24, 24);
+                }
+            }
+        }
+
+        private void btnDoiHinh_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Cập nhật hình ảnh sản phẩm";
+            openFileDialog.Filter = "Tập tin hình ảnh|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
+            openFileDialog.Multiselect = false;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string fileName = Path.GetFileNameWithoutExtension(openFileDialog.FileName);
+                string ext = Path.GetExtension(openFileDialog.FileName);
+                string fileSavePath = Path.Combine(imagesFolder, fileName.GenerateSlug() + ext);
+                File.Copy(openFileDialog.FileName, fileSavePath, true);
+                id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["IDPhong"].Value.ToString());
+                Phong p = context.Phong.Find(id);
+                p.HinhAnh = fileName.GenerateSlug() + ext;
+                context.Phong.Update(p);
+                context.SaveChanges();
+                frmPhong_Load(sender, e);
+            }
+        }
+
+        private void btnThemAnh_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Image|*.jpg;*.png;*.jpeg";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                string fileName = Path.GetFileNameWithoutExtension(ofd.FileName);
+                string ext = Path.GetExtension(ofd.FileName);
+                string newName = fileName.GenerateSlug() + ext;
+
+                string savePath = Path.Combine(imagesFolder, newName);
+                File.Copy(ofd.FileName, savePath, true);
+
+                
+                picHinhAnh.ImageLocation = savePath;
+
+                
+                hinhAnhTam = newName;
             }
         }
     }

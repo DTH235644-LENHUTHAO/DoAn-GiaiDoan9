@@ -13,7 +13,8 @@ namespace DoAn_GiaiDoan1.Data
         public string TenNV { get; set; }
         public string ChucVu { get; set; }
         public string DienThoai { get; set; }
-        
+
+        public virtual TaiKhoan? TaiKhoan { get; set; } = null;
         public virtual ObservableCollectionListSource<DatPhong> DatPhong { get; } = new();
 
 
