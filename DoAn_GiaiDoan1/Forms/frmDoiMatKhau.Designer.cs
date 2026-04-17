@@ -62,7 +62,7 @@
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new Point(35, 31);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1234, 393);
+            groupBox1.Size = new Size(1234, 239);
             groupBox1.TabIndex = 8;
             groupBox1.TabStop = false;
             groupBox1.Text = "Thông tin chung ";
@@ -70,7 +70,7 @@
             // lblDienThoai
             // 
             lblDienThoai.AutoSize = true;
-            lblDienThoai.Location = new Point(311, 297);
+            lblDienThoai.Location = new Point(993, 148);
             lblDienThoai.Name = "lblDienThoai";
             lblDienThoai.Size = new Size(97, 36);
             lblDienThoai.TabIndex = 15;
@@ -79,7 +79,7 @@
             // lblChucVu
             // 
             lblChucVu.AutoSize = true;
-            lblChucVu.Location = new Point(311, 220);
+            lblChucVu.Location = new Point(311, 148);
             lblChucVu.Name = "lblChucVu";
             lblChucVu.Size = new Size(97, 36);
             lblChucVu.TabIndex = 14;
@@ -88,7 +88,7 @@
             // lblTenDangNhap
             // 
             lblTenDangNhap.AutoSize = true;
-            lblTenDangNhap.Location = new Point(311, 144);
+            lblTenDangNhap.Location = new Point(993, 67);
             lblTenDangNhap.Name = "lblTenDangNhap";
             lblTenDangNhap.Size = new Size(97, 36);
             lblTenDangNhap.TabIndex = 13;
@@ -106,7 +106,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(52, 297);
+            label4.Location = new Point(734, 148);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
             label4.Size = new Size(218, 36);
@@ -116,7 +116,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(54, 220);
+            label3.Location = new Point(54, 148);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new Size(216, 36);
@@ -126,7 +126,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(47, 144);
+            label2.Location = new Point(729, 67);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(223, 36);
@@ -152,7 +152,7 @@
             groupBox2.Controls.Add(label7);
             groupBox2.Controls.Add(label6);
             groupBox2.Controls.Add(label5);
-            groupBox2.Location = new Point(34, 452);
+            groupBox2.Location = new Point(35, 301);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(1235, 342);
             groupBox2.TabIndex = 9;
@@ -197,6 +197,7 @@
             // label7
             // 
             label7.AutoSize = true;
+            label7.ForeColor = Color.FromArgb(192, 0, 0);
             label7.Location = new Point(7, 237);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
@@ -207,6 +208,7 @@
             // label6
             // 
             label6.AutoSize = true;
+            label6.ForeColor = Color.FromArgb(192, 0, 0);
             label6.Location = new Point(57, 154);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
@@ -226,7 +228,8 @@
             // 
             // btnDoiMatKhau
             // 
-            btnDoiMatKhau.Location = new Point(532, 838);
+            btnDoiMatKhau.ForeColor = Color.FromArgb(0, 192, 0);
+            btnDoiMatKhau.Location = new Point(526, 697);
             btnDoiMatKhau.Name = "btnDoiMatKhau";
             btnDoiMatKhau.Size = new Size(246, 46);
             btnDoiMatKhau.TabIndex = 10;
@@ -238,7 +241,7 @@
             // 
             AutoScaleDimensions = new SizeF(19F, 36F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1310, 923);
+            ClientSize = new Size(1310, 779);
             Controls.Add(btnDoiMatKhau);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);

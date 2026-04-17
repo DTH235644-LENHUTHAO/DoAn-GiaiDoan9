@@ -49,8 +49,8 @@
             mnuThongKeDoanhThu = new ToolStripMenuItem();
             mnuThongKeDichVu = new ToolStripMenuItem();
             trợGiúpToolStripMenuItem = new ToolStripMenuItem();
-            hướngDẫnSửDụngToolStripMenuItem = new ToolStripMenuItem();
-            thôngTinPhầnMềmToolStripMenuItem = new ToolStripMenuItem();
+            mnuHuongDanSuDung = new ToolStripMenuItem();
+            mnuThongTinPhanMem = new ToolStripMenuItem();
             statusStrip1 = new StatusStrip();
             lblTrangThai = new ToolStripStatusLabel();
             toolStripStatusLabel2 = new ToolStripStatusLabel();
@@ -207,22 +207,24 @@
             // 
             // trợGiúpToolStripMenuItem
             // 
-            trợGiúpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { hướngDẫnSửDụngToolStripMenuItem, thôngTinPhầnMềmToolStripMenuItem });
+            trợGiúpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { mnuHuongDanSuDung, mnuThongTinPhanMem });
             trợGiúpToolStripMenuItem.Name = "trợGiúpToolStripMenuItem";
             trợGiúpToolStripMenuItem.Size = new Size(155, 40);
             trợGiúpToolStripMenuItem.Text = "Trợ giúp";
             // 
-            // hướngDẫnSửDụngToolStripMenuItem
+            // mnuHuongDanSuDung
             // 
-            hướngDẫnSửDụngToolStripMenuItem.Name = "hướngDẫnSửDụngToolStripMenuItem";
-            hướngDẫnSửDụngToolStripMenuItem.Size = new Size(438, 44);
-            hướngDẫnSửDụngToolStripMenuItem.Text = "Hướng dẫn sử dụng";
+            mnuHuongDanSuDung.Name = "mnuHuongDanSuDung";
+            mnuHuongDanSuDung.Size = new Size(438, 44);
+            mnuHuongDanSuDung.Text = "Hướng dẫn sử dụng";
+            mnuHuongDanSuDung.Click += mnuHuongDanSuDung_Click;
             // 
-            // thôngTinPhầnMềmToolStripMenuItem
+            // mnuThongTinPhanMem
             // 
-            thôngTinPhầnMềmToolStripMenuItem.Name = "thôngTinPhầnMềmToolStripMenuItem";
-            thôngTinPhầnMềmToolStripMenuItem.Size = new Size(438, 44);
-            thôngTinPhầnMềmToolStripMenuItem.Text = "Thông tin phần mềm";
+            mnuThongTinPhanMem.Name = "mnuThongTinPhanMem";
+            mnuThongTinPhanMem.Size = new Size(438, 44);
+            mnuThongTinPhanMem.Text = "Thông tin phần mềm";
+            mnuThongTinPhanMem.Click += mnuThongTinPhanMem_Click;
             // 
             // statusStrip1
             // 
@@ -261,7 +263,7 @@
             lblLienKet.IsLink = true;
             lblLienKet.Name = "lblLienKet";
             lblLienKet.Size = new Size(132, 32);
-            lblLienKet.Text = "© 2024 FIT";
+            lblLienKet.Text = "© 2026 FIT";
             lblLienKet.Click += lblLienKet_Click;
             // 
             // frmMain
@@ -310,8 +312,8 @@
         private ToolStripMenuItem mnuThongKeDoanhThu;
         private ToolStripMenuItem mnuThongKeDichVu;
         private ToolStripMenuItem trợGiúpToolStripMenuItem;
-        private ToolStripMenuItem hướngDẫnSửDụngToolStripMenuItem;
-        private ToolStripMenuItem thôngTinPhầnMềmToolStripMenuItem;
+        private ToolStripMenuItem mnuHuongDanSuDung;
+        private ToolStripMenuItem mnuThongTinPhanMem;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel lblTrangThai;
         private ToolStripStatusLabel toolStripStatusLabel2;

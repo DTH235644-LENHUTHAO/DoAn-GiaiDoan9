@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            btnHuyBo = new Button();
             btnQuayLai = new Button();
             btnSua = new Button();
             btnXoa = new Button();
@@ -48,7 +49,6 @@
             SoLuong = new DataGridViewTextBoxColumn();
             DonGia = new DataGridViewTextBoxColumn();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
-            btnHuyBo = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numSoLuong).BeginInit();
             groupBox2.SuspendLayout();
@@ -75,6 +75,16 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Thông tin dịch vụ";
             // 
+            // btnHuyBo
+            // 
+            btnHuyBo.Location = new Point(1337, 186);
+            btnHuyBo.Name = "btnHuyBo";
+            btnHuyBo.Size = new Size(150, 46);
+            btnHuyBo.TabIndex = 11;
+            btnHuyBo.Text = "Hủy bỏ";
+            btnHuyBo.UseVisualStyleBackColor = true;
+            btnHuyBo.Click += btnHuyBo_Click;
+            // 
             // btnQuayLai
             // 
             btnQuayLai.Location = new Point(1447, 112);
@@ -97,6 +107,7 @@
             // 
             // btnXoa
             // 
+            btnXoa.ForeColor = Color.FromArgb(192, 0, 0);
             btnXoa.Location = new Point(1447, 43);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(150, 46);
@@ -107,6 +118,7 @@
             // 
             // btnThem
             // 
+            btnThem.ForeColor = Color.Green;
             btnThem.Location = new Point(1231, 43);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(150, 46);
@@ -238,16 +250,6 @@
             // 
             sqlCommand1.CommandTimeout = 30;
             sqlCommand1.EnableOptimizedParameterBinding = false;
-            // 
-            // btnHuyBo
-            // 
-            btnHuyBo.Location = new Point(1337, 186);
-            btnHuyBo.Name = "btnHuyBo";
-            btnHuyBo.Size = new Size(150, 46);
-            btnHuyBo.TabIndex = 11;
-            btnHuyBo.Text = "Hủy bỏ";
-            btnHuyBo.UseVisualStyleBackColor = true;
-            btnHuyBo.Click += btnHuyBo_Click;
             // 
             // frmSuDungDichVu
             // 

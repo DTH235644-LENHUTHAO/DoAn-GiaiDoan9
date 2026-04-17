@@ -203,7 +203,10 @@ namespace QuanLyQuanKaraoke.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     HoaDonID = table.Column<int>(type: "int", nullable: false),
-                    GhiChu = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Loai = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Ten = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SoLuong = table.Column<double>(type: "float", nullable: false),
+                    DonGia = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ThanhTien = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>

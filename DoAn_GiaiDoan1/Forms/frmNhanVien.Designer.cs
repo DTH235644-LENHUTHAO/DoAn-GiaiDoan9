@@ -38,6 +38,12 @@
             txtDienThoai = new TextBox();
             txtChucVu = new TextBox();
             dataGridView1 = new DataGridView();
+            ID = new DataGridViewTextBoxColumn();
+            TenNV = new DataGridViewTextBoxColumn();
+            ChucVu = new DataGridViewTextBoxColumn();
+            DienThaoi = new DataGridViewTextBoxColumn();
+            TenDangNhap = new DataGridViewTextBoxColumn();
+            MatKhau = new DataGridViewTextBoxColumn();
             txtTenNV = new TextBox();
             label3 = new Label();
             label2 = new Label();
@@ -50,12 +56,6 @@
             label4 = new Label();
             btnNhap = new Button();
             btnXuat = new Button();
-            ID = new DataGridViewTextBoxColumn();
-            TenNV = new DataGridViewTextBoxColumn();
-            ChucVu = new DataGridViewTextBoxColumn();
-            DienThaoi = new DataGridViewTextBoxColumn();
-            TenDangNhap = new DataGridViewTextBoxColumn();
-            MatKhau = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -120,6 +120,7 @@
             // 
             // btnThem
             // 
+            btnThem.ForeColor = Color.FromArgb(0, 192, 0);
             btnThem.Location = new Point(1086, 59);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(237, 55);
@@ -160,6 +161,48 @@
             dataGridView1.RowHeadersWidth = 82;
             dataGridView1.Size = new Size(1716, 679);
             dataGridView1.TabIndex = 0;
+            // 
+            // ID
+            // 
+            ID.DataPropertyName = "ID";
+            ID.HeaderText = "ID";
+            ID.MinimumWidth = 10;
+            ID.Name = "ID";
+            // 
+            // TenNV
+            // 
+            TenNV.DataPropertyName = "TenNV";
+            TenNV.HeaderText = "Tên nhân viên";
+            TenNV.MinimumWidth = 10;
+            TenNV.Name = "TenNV";
+            // 
+            // ChucVu
+            // 
+            ChucVu.DataPropertyName = "ChucVu";
+            ChucVu.HeaderText = "Chức vụ";
+            ChucVu.MinimumWidth = 10;
+            ChucVu.Name = "ChucVu";
+            // 
+            // DienThaoi
+            // 
+            DienThaoi.DataPropertyName = "DienThoai";
+            DienThaoi.HeaderText = "Số điện thoại";
+            DienThaoi.MinimumWidth = 10;
+            DienThaoi.Name = "DienThaoi";
+            // 
+            // TenDangNhap
+            // 
+            TenDangNhap.DataPropertyName = "TenDangNhap";
+            TenDangNhap.HeaderText = "Tên đăng nhập";
+            TenDangNhap.MinimumWidth = 10;
+            TenDangNhap.Name = "TenDangNhap";
+            // 
+            // MatKhau
+            // 
+            MatKhau.DataPropertyName = "MatKhau";
+            MatKhau.HeaderText = "Mật khẩu";
+            MatKhau.MinimumWidth = 10;
+            MatKhau.Name = "MatKhau";
             // 
             // txtTenNV
             // 
@@ -296,48 +339,6 @@
             btnXuat.Text = "Xuất";
             btnXuat.UseVisualStyleBackColor = true;
             btnXuat.Click += btnXuat_Click;
-            // 
-            // ID
-            // 
-            ID.DataPropertyName = "ID";
-            ID.HeaderText = "ID";
-            ID.MinimumWidth = 10;
-            ID.Name = "ID";
-            // 
-            // TenNV
-            // 
-            TenNV.DataPropertyName = "TenNV";
-            TenNV.HeaderText = "Tên nhân viên";
-            TenNV.MinimumWidth = 10;
-            TenNV.Name = "TenNV";
-            // 
-            // ChucVu
-            // 
-            ChucVu.DataPropertyName = "ChucVu";
-            ChucVu.HeaderText = "Chức vụ";
-            ChucVu.MinimumWidth = 10;
-            ChucVu.Name = "ChucVu";
-            // 
-            // DienThaoi
-            // 
-            DienThaoi.DataPropertyName = "DienThoai";
-            DienThaoi.HeaderText = "Số điện thoại";
-            DienThaoi.MinimumWidth = 10;
-            DienThaoi.Name = "DienThaoi";
-            // 
-            // TenDangNhap
-            // 
-            TenDangNhap.DataPropertyName = "TenDangNhap";
-            TenDangNhap.HeaderText = "Tên đăng nhập";
-            TenDangNhap.MinimumWidth = 10;
-            TenDangNhap.Name = "TenDangNhap";
-            // 
-            // MatKhau
-            // 
-            MatKhau.DataPropertyName = "MatKhau";
-            MatKhau.HeaderText = "Mật khẩu";
-            MatKhau.MinimumWidth = 10;
-            MatKhau.Name = "MatKhau";
             // 
             // frmNhanVien
             // 

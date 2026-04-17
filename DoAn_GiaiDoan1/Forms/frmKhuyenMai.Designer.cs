@@ -85,6 +85,7 @@
             // 
             // btnThem
             // 
+            btnThem.ForeColor = Color.FromArgb(0, 192, 0);
             btnThem.Location = new Point(1086, 59);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(237, 55);

@@ -65,17 +65,20 @@ namespace QuanLyQuanKaraoke.Forms
 
         void LoadDichVu()
         {
-            var ds = context.SuDungDichVu
-                .Where(x => x.DatPhongID == datPhongID)
+            var hoaDon = context.HoaDon
+                .FirstOrDefault(x => x.DatPhongID == datPhongID);
+
+            if (hoaDon == null) return;
+
+            var ds = context.ChiTietHoaDon
+                .Where(x => x.HoaDonID == hoaDon.ID && x.Loai == "DichVu")
                 .Select(x => new
                 {
                     ID = x.ID,
-                    DatPhongID = x.DatPhongID,
-                    DichVuID = x.DichVuID,
-                    TenDV = x.DichVu.TenDV,
+                    TenDV = x.Ten,
                     SoLuong = x.SoLuong,
-                    DonGia = x.DichVu.DonGia,
-                    ThanhTien = x.SoLuong * x.DichVu.DonGia
+                    DonGia = x.DonGia,
+                    ThanhTien = x.ThanhTien
                 }).ToList();
 
             dataGridView1.DataSource = ds;
@@ -115,6 +118,7 @@ namespace QuanLyQuanKaraoke.Forms
                 hd = new HoaDon();
                 hd.DatPhongID = datPhongID;
                 context.HoaDon.Add(hd);
+                context.SaveChanges();
             }
 
             hd.ThoiGianLap = DateTime.Now;
@@ -123,36 +127,6 @@ namespace QuanLyQuanKaraoke.Forms
 
             context.SaveChanges();
 
-
-            var chiTiet = context.ChiTietHoaDon
-                .Where(x => x.HoaDonID == hd.ID)
-                .ToList();
-
-            context.ChiTietHoaDon.RemoveRange(chiTiet);
-
-            // them vào chi tiết hóa đơn
-            context.ChiTietHoaDon.Add(new ChiTietHoaDon
-            {
-                HoaDonID = hd.ID,
-                GhiChu = "Tiền phòng",
-                ThanhTien = tienPhong
-            });
-
-            context.ChiTietHoaDon.Add(new ChiTietHoaDon
-            {
-                HoaDonID = hd.ID,
-                GhiChu = "Tiền dịch vụ",
-                ThanhTien = tienDV
-            });
-
-            context.ChiTietHoaDon.Add(new ChiTietHoaDon
-            {
-                HoaDonID = hd.ID,
-                GhiChu = "Giảm giá",
-                ThanhTien = tienGiam
-            });
-
-            context.SaveChanges();
 
             MessageBox.Show("Lưu hóa đơn thành công!");
 
@@ -172,38 +146,60 @@ namespace QuanLyQuanKaraoke.Forms
 
         private void btnTinhTien_Click(object sender, EventArgs e)
         {
-            var dp = context.DatPhong.Find(datPhongID);
+            var hoaDon = context.HoaDon
+                .FirstOrDefault(x => x.DatPhongID == datPhongID);
 
-            double gio = (dp.ThoiGianKetThuc.Value - dp.ThoiGianBatDau).TotalHours;
+            if (hoaDon == null) return;
 
-            decimal gia = context.Phong
-                .Where(p => p.ID == dp.PhongID)
-                .Select(p => p.LoaiPhong.GiaGio)
-                .FirstOrDefault();
+            var ds = context.ChiTietHoaDon
+                .Where(x => x.HoaDonID == hoaDon.ID)
+                .ToList();
 
-            decimal tienPhong = (decimal)gio * gia;
+            decimal tienPhong = ds
+                .Where(x => x.Loai == "Phong")
+                .Sum(x => x.ThanhTien);
 
-            decimal tienDV = context.SuDungDichVu
-                .Where(sd => sd.DatPhongID == datPhongID)
-                .Join(context.DichVu,
-                    sd => sd.DichVuID,
-                    dv => dv.ID,
-                    (sd, dv) => sd.SoLuong * dv.DonGia)
-                .Sum();
+            decimal tienDV = ds
+                .Where(x => x.Loai == "DichVu")
+                .Sum(x => x.ThanhTien);
 
             decimal tong = tienPhong + tienDV;
 
             decimal giam = 0;
 
+            // XÓA giảm giá cũ
+            var giamGiaCu = context.ChiTietHoaDon
+                .Where(x => x.HoaDonID == hoaDon.ID && x.Loai == "KhuyenMai");
+
+            context.ChiTietHoaDon.RemoveRange(giamGiaCu);
+
+            // LẤY KHUYẾN MÃI
             if (cboKhuyenMai.SelectedValue != null)
             {
                 var km = context.KhuyenMai.Find((int)cboKhuyenMai.SelectedValue);
-                giam = tong * km.PhanTramGiam / 100;
+
+                if (km != null)
+                {
+                    giam = tong * km.PhanTramGiam / 100;
+
+                    ChiTietHoaDon ct = new ChiTietHoaDon
+                    {
+                        HoaDonID = hoaDon.ID,
+                        Loai = "KhuyenMai",
+                        Ten = km.TenKhuyenMai,   
+                        SoLuong = 1,
+                        DonGia = km.PhanTramGiam,
+                        ThanhTien = -giam
+                    };
+
+                    context.ChiTietHoaDon.Add(ct);
+                }
             }
+
+            context.SaveChanges();
 
             decimal thanhTien = tong - giam;
 
-            // HIỂN THỊ
             txtTienPhong.Text = tienPhong.ToString("N0");
             txtTienDV.Text = tienDV.ToString("N0");
             txtTienGiam.Text = giam.ToString("N0");

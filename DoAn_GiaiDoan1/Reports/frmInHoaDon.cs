@@ -18,7 +18,8 @@ namespace QuanLyQuanKaraoke.Reports
     {
         QLQKDbContext context = new QLQKDbContext();
         //QLQKDataSet.DanhSachHoaDon_ChiTietDataTable danhSachHoaDon_ChiTietDataTable = new QLQKDataSet.DanhSachHoaDon_ChiTietDataTable();
-        QLQKDataSet.DanhSachSuDungDichVuDataTable danhSachSuDungDichVuDataTable = new QLQKDataSet.DanhSachSuDungDichVuDataTable();
+        //QLQKDataSet.DanhSachSuDungDichVuDataTable danhSachSuDungDichVuDataTable = new QLQKDataSet.DanhSachSuDungDichVuDataTable();
+        QLQKDataSet.ChiTietHoaDonDataTable chiTietHoaDonDataTable = new QLQKDataSet.ChiTietHoaDonDataTable();
         string reportsFolder = Application.StartupPath.Replace("bin\\Debug\\net8.0-windows", "Reports");
         int id;
         public frmInHoaDon(int mahoadon = 0)
@@ -56,28 +57,29 @@ namespace QuanLyQuanKaraoke.Reports
                 TongTien = r.TongTien,
             }).ToList();*/
 
-            var dsDV = context.SuDungDichVu
-                .Where(x => x.DatPhongID == hoaDon.DatPhong.ID)
-                .Select(x => new DanhSachSuDungDichVu2
-                {
-                    ID = x.ID,
-                    DatPhongID = x.DatPhongID,
-                    DichVuID = x.DichVuID,
-                    TenDV = x.DichVu.TenDV,
-                    SoLuong = x.SoLuong,
-                    DonGia = x.DichVu.DonGia,
-                    ThanhTien = x.SoLuong * x.DichVu.DonGia
-                }).ToList();
+            var dsCT = context.ChiTietHoaDon
+                 .Where(x => x.HoaDonID == hoaDon.ID && x.Loai == "DichVu")
+                 .Select(x => new
+                 {
+                     ID = x.ID,
+                     HoaDonID = x.HoaDonID,
+                     Loai = x.Loai,
+                     Ten = x.Ten,
+                     SoLuong = x.SoLuong,
+                     DonGia = x.DonGia,
+                     ThanhTien = x.ThanhTien
+                 })
+                 .ToList();
 
-            danhSachSuDungDichVuDataTable.Clear();
+            chiTietHoaDonDataTable.Clear();
 
-            foreach (var row in dsDV)
+            foreach (var row in dsCT)
             {
-                danhSachSuDungDichVuDataTable.AddDanhSachSuDungDichVuRow(
+                chiTietHoaDonDataTable.AddChiTietHoaDonRow(
                     row.ID,
-                    row.DatPhongID,
-                    row.DichVuID,
-                    row.TenDV,
+                    row.HoaDonID,
+                    row.Loai,
+                    row.Ten,
                     row.SoLuong,
                     row.DonGia,
                     row.ThanhTien
@@ -85,8 +87,8 @@ namespace QuanLyQuanKaraoke.Reports
             }
 
             ReportDataSource reportDataSource = new ReportDataSource();
-            reportDataSource.Name = "DanhSachSuDungDichVu";
-            reportDataSource.Value = danhSachSuDungDichVuDataTable;
+            reportDataSource.Name = "ChiTietHoaDon";
+            reportDataSource.Value = chiTietHoaDonDataTable;
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.DataSources.Add(reportDataSource);
             reportViewer1.LocalReport.ReportPath = Path.Combine(reportsFolder, "rptInHoaDon.rdlc");
@@ -103,15 +105,15 @@ namespace QuanLyQuanKaraoke.Reports
                 .FirstOrDefault();
 
             decimal tienHat = context.ChiTietHoaDon
-                .Where(ct => ct.HoaDonID == hoaDon.ID && ct.GhiChu == "Tiền phòng")
+                .Where(ct => ct.HoaDonID == hoaDon.ID && ct.Loai == "Phong")
                 .Select(ct => ct.ThanhTien).FirstOrDefault();
 
             decimal tienDV = context.ChiTietHoaDon
-                .Where(ct => ct.HoaDonID == hoaDon.ID && ct.GhiChu == "Tiền dịch vụ")
+                .Where(ct => ct.HoaDonID == hoaDon.ID && ct.Loai == "DichVu")
                 .Select(ct => ct.ThanhTien).FirstOrDefault();
 
             decimal tienGiam = context.ChiTietHoaDon
-                .Where(ct => ct.HoaDonID == hoaDon.ID && ct.GhiChu == "Giảm giá")
+                .Where(ct => ct.HoaDonID == hoaDon.ID && ct.Loai == "KhuyenMai")
                 .Select(ct => ct.ThanhTien).FirstOrDefault();
 
             IList<ReportParameter> param = new List<ReportParameter>

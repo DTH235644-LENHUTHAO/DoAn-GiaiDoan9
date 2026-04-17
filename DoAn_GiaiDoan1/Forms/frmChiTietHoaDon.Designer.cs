@@ -32,7 +32,10 @@
             dataGridView1 = new DataGridView();
             ID = new DataGridViewTextBoxColumn();
             HoaDonID = new DataGridViewTextBoxColumn();
-            GhiChu = new DataGridViewTextBoxColumn();
+            Loai = new DataGridViewTextBoxColumn();
+            Ten = new DataGridViewTextBoxColumn();
+            SoLuong = new DataGridViewTextBoxColumn();
+            DonGia = new DataGridViewTextBoxColumn();
             ThanhTien = new DataGridViewTextBoxColumn();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -54,7 +57,7 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ID, HoaDonID, GhiChu, ThanhTien });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ID, HoaDonID, Loai, Ten, SoLuong, DonGia, ThanhTien });
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(3, 40);
             dataGridView1.MultiSelect = false;
@@ -77,12 +80,33 @@
             HoaDonID.MinimumWidth = 10;
             HoaDonID.Name = "HoaDonID";
             // 
-            // GhiChu
+            // Loai
             // 
-            GhiChu.DataPropertyName = "GhiChu";
-            GhiChu.HeaderText = "Ghi chú";
-            GhiChu.MinimumWidth = 10;
-            GhiChu.Name = "GhiChu";
+            Loai.DataPropertyName = "Loai";
+            Loai.HeaderText = "Loại";
+            Loai.MinimumWidth = 10;
+            Loai.Name = "Loai";
+            // 
+            // Ten
+            // 
+            Ten.DataPropertyName = "Ten";
+            Ten.HeaderText = "Tên";
+            Ten.MinimumWidth = 10;
+            Ten.Name = "Ten";
+            // 
+            // SoLuong
+            // 
+            SoLuong.DataPropertyName = "SoLuong";
+            SoLuong.HeaderText = "Số lượng";
+            SoLuong.MinimumWidth = 10;
+            SoLuong.Name = "SoLuong";
+            // 
+            // DonGia
+            // 
+            DonGia.DataPropertyName = "DonGia";
+            DonGia.HeaderText = "Đơn giá";
+            DonGia.MinimumWidth = 10;
+            DonGia.Name = "DonGia";
             // 
             // ThanhTien
             // 
@@ -113,7 +137,10 @@
         private DataGridView dataGridView1;
         private DataGridViewTextBoxColumn ID;
         private DataGridViewTextBoxColumn HoaDonID;
-        private DataGridViewTextBoxColumn GhiChu;
+        private DataGridViewTextBoxColumn Loai;
+        private DataGridViewTextBoxColumn Ten;
+        private DataGridViewTextBoxColumn SoLuong;
+        private DataGridViewTextBoxColumn DonGia;
         private DataGridViewTextBoxColumn ThanhTien;
     }
 }

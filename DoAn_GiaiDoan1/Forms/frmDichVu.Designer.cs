@@ -30,6 +30,9 @@
         {
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             dataGridView1 = new DataGridView();
+            ID = new DataGridViewTextBoxColumn();
+            TenDV = new DataGridViewTextBoxColumn();
+            DonGia = new DataGridViewTextBoxColumn();
             groupBox2 = new GroupBox();
             btnThoat = new Button();
             btnHuyBo = new Button();
@@ -43,9 +46,6 @@
             label1 = new Label();
             groupBox1 = new GroupBox();
             txtTenDV = new TextBox();
-            ID = new DataGridViewTextBoxColumn();
-            TenDV = new DataGridViewTextBoxColumn();
-            DonGia = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -70,6 +70,27 @@
             dataGridView1.RowHeadersWidth = 82;
             dataGridView1.Size = new Size(1716, 679);
             dataGridView1.TabIndex = 0;
+            // 
+            // ID
+            // 
+            ID.DataPropertyName = "ID";
+            ID.HeaderText = "ID";
+            ID.MinimumWidth = 10;
+            ID.Name = "ID";
+            // 
+            // TenDV
+            // 
+            TenDV.DataPropertyName = "TenDV";
+            TenDV.HeaderText = "Tên dịch vụ";
+            TenDV.MinimumWidth = 10;
+            TenDV.Name = "TenDV";
+            // 
+            // DonGia
+            // 
+            DonGia.DataPropertyName = "DonGia";
+            DonGia.HeaderText = "Đơn giá";
+            DonGia.MinimumWidth = 10;
+            DonGia.Name = "DonGia";
             // 
             // groupBox2
             // 
@@ -135,6 +156,7 @@
             // 
             // btnThem
             // 
+            btnThem.ForeColor = Color.FromArgb(0, 192, 0);
             btnThem.Location = new Point(1086, 59);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(237, 55);
@@ -211,27 +233,6 @@
             txtTenDV.Name = "txtTenDV";
             txtTenDV.Size = new Size(556, 50);
             txtTenDV.TabIndex = 3;
-            // 
-            // ID
-            // 
-            ID.DataPropertyName = "ID";
-            ID.HeaderText = "ID";
-            ID.MinimumWidth = 10;
-            ID.Name = "ID";
-            // 
-            // TenDV
-            // 
-            TenDV.DataPropertyName = "TenDV";
-            TenDV.HeaderText = "Tên dịch vụ";
-            TenDV.MinimumWidth = 10;
-            TenDV.Name = "TenDV";
-            // 
-            // DonGia
-            // 
-            DonGia.DataPropertyName = "DonGia";
-            DonGia.HeaderText = "Đơn giá";
-            DonGia.MinimumWidth = 10;
-            DonGia.Name = "DonGia";
             // 
             // frmDichVu
             // 

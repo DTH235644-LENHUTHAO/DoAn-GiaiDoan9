@@ -58,8 +58,6 @@
             groupBox3 = new GroupBox();
             dataGridView1 = new DataGridView();
             ID = new DataGridViewTextBoxColumn();
-            DatPhongID = new DataGridViewTextBoxColumn();
-            DichVuID = new DataGridViewTextBoxColumn();
             TenDV = new DataGridViewTextBoxColumn();
             SoLuong = new DataGridViewTextBoxColumn();
             DonGia = new DataGridViewTextBoxColumn();
@@ -191,6 +189,7 @@
             // 
             // btnTinhTien
             // 
+            btnTinhTien.ForeColor = Color.FromArgb(0, 192, 0);
             btnTinhTien.Location = new Point(1513, 59);
             btnTinhTien.Name = "btnTinhTien";
             btnTinhTien.Size = new Size(150, 46);
@@ -337,7 +336,7 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ID, DatPhongID, DichVuID, TenDV, SoLuong, DonGia, ThanhTien });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ID, TenDV, SoLuong, DonGia, ThanhTien });
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(3, 40);
             dataGridView1.MultiSelect = false;
@@ -352,20 +351,6 @@
             ID.HeaderText = "ID";
             ID.MinimumWidth = 10;
             ID.Name = "ID";
-            // 
-            // DatPhongID
-            // 
-            DatPhongID.DataPropertyName = "DatPhongID";
-            DatPhongID.HeaderText = "Mã đặt phòng";
-            DatPhongID.MinimumWidth = 10;
-            DatPhongID.Name = "DatPhongID";
-            // 
-            // DichVuID
-            // 
-            DichVuID.DataPropertyName = "DichVuID";
-            DichVuID.HeaderText = "Mã dịch vụ";
-            DichVuID.MinimumWidth = 10;
-            DichVuID.Name = "DichVuID";
             // 
             // TenDV
             // 
@@ -444,16 +429,14 @@
         private Button btnLuu;
         private GroupBox groupBox3;
         private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn ID;
-        private DataGridViewTextBoxColumn DatPhongID;
-        private DataGridViewTextBoxColumn DichVuID;
-        private DataGridViewTextBoxColumn TenDV;
-        private DataGridViewTextBoxColumn SoLuong;
-        private DataGridViewTextBoxColumn DonGia;
-        private DataGridViewTextBoxColumn ThanhTien;
         private TextBox txtTienGiam;
         private Label label10;
         private TextBox txtNhanVien;
         private Label label11;
+        private DataGridViewTextBoxColumn ID;
+        private DataGridViewTextBoxColumn TenDV;
+        private DataGridViewTextBoxColumn SoLuong;
+        private DataGridViewTextBoxColumn DonGia;
+        private DataGridViewTextBoxColumn ThanhTien;
     }
 }

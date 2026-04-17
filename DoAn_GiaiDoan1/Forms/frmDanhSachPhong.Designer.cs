@@ -28,26 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
             panelPhong = new FlowLayoutPanel();
+            btnReset = new Button();
             groupBox2.SuspendLayout();
             SuspendLayout();
-            // 
-            // groupBox1
-            // 
-            groupBox1.Location = new Point(11, 0);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1322, 126);
-            groupBox1.TabIndex = 1;
-            groupBox1.TabStop = false;
             // 
             // groupBox2
             // 
             groupBox2.Controls.Add(panelPhong);
-            groupBox2.Location = new Point(12, 149);
+            groupBox2.Location = new Point(12, 145);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1321, 695);
+            groupBox2.Size = new Size(1321, 699);
             groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
             groupBox2.Text = "Danh sách phòng";
@@ -58,16 +50,29 @@
             panelPhong.Dock = DockStyle.Fill;
             panelPhong.Location = new Point(3, 40);
             panelPhong.Name = "panelPhong";
-            panelPhong.Size = new Size(1315, 652);
+            panelPhong.Size = new Size(1315, 656);
             panelPhong.TabIndex = 0;
+            // 
+            // btnReset
+            // 
+            btnReset.BackColor = SystemColors.ButtonFace;
+            btnReset.Font = new Font("Times New Roman", 19.875F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            btnReset.ForeColor = Color.Green;
+            btnReset.Location = new Point(1226, 45);
+            btnReset.Name = "btnReset";
+            btnReset.Size = new Size(80, 70);
+            btnReset.TabIndex = 3;
+            btnReset.Text = "🔄️";
+            btnReset.UseVisualStyleBackColor = false;
+            btnReset.Click += btnReset_Click;
             // 
             // frmDanhSachPhong
             // 
             AutoScaleDimensions = new SizeF(19F, 36F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1345, 856);
+            Controls.Add(btnReset);
             Controls.Add(groupBox2);
-            Controls.Add(groupBox1);
             Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
             Margin = new Padding(4, 3, 4, 3);
             Name = "frmDanhSachPhong";
@@ -78,8 +83,8 @@
         }
 
         #endregion
-        private GroupBox groupBox1;
         private GroupBox groupBox2;
         private FlowLayoutPanel panelPhong;
+        private Button btnReset;
     }
 }

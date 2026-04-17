@@ -1,4 +1,5 @@
-﻿using QuanLyQuanKaraoke.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using QuanLyQuanKaraoke.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -154,17 +155,64 @@ namespace QuanLyQuanKaraoke.Forms
                     {
                         dp.ThoiGianKetThuc = DateTime.Now;
 
-                        TimeSpan tg = dp.ThoiGianKetThuc.Value - dp.ThoiGianBatDau;
-                        double gio = tg.TotalHours;
+                        var hoaDon = context.HoaDon
+                             .FirstOrDefault(x => x.DatPhongID == dp.ID);
 
-                        double tien = gio * (double)context.Phong
+                        if (hoaDon == null)
+                        {
+                            hoaDon = new HoaDon
+                            {
+                                DatPhongID = dp.ID,
+                                ThoiGianLap = DateTime.Now
+                            };
+
+                            context.HoaDon.Add(hoaDon);
+                            context.SaveChanges();
+                        }
+
+                        TimeSpan tg = dp.ThoiGianKetThuc.Value - dp.ThoiGianBatDau;
+                        double gio = Math.Round(tg.TotalHours, 2);
+
+                        decimal gia = (decimal)context.Phong
                             .Where(p => p.ID == phongID)
                             .Select(p => p.LoaiPhong.GiaGio)
                             .FirstOrDefault();
 
-                        MessageBox.Show($"Giờ: {gio:0.00}\nTiền: {tien:N0}đ");
+                        ChiTietHoaDon ct = new ChiTietHoaDon
+                        {
+                            HoaDonID = hoaDon.ID,
+                            Loai = "Phong",
+                            Ten = phong.TenPhong,
+                            SoLuong = gio,
+                            DonGia = gia,
+                            ThanhTien = (decimal)gio * gia
+                        };
+
+                        context.ChiTietHoaDon.Add(ct);
+
+                        // lấy danh sách dịch vụ đã dùng
+                        var dsDV = context.SuDungDichVu
+                            .Where(x => x.DatPhongID == dp.ID)
+                            .Include(x => x.DichVu)
+                            .ToList();
+
+                        foreach (var item in dsDV)
+                        {
+                            ChiTietHoaDon ctDV = new ChiTietHoaDon
+                            {
+                                HoaDonID = hoaDon.ID,
+                                Loai = "DichVu",
+                                Ten = item.DichVu.TenDV,
+                                SoLuong = item.SoLuong,
+                                DonGia = item.DichVu.DonGia,
+                                ThanhTien = item.SoLuong * item.DichVu.DonGia
+                            };
+
+                            context.ChiTietHoaDon.Add(ctDV);
+                        }
 
                         context.SaveChanges();
+                        MessageBox.Show("Đóng phòng thành công!");
                         frmDanhSachPhong_Load(sender, e);
                     }
                     else if (fchon.LuaChon == "ThemDV")
@@ -175,10 +223,15 @@ namespace QuanLyQuanKaraoke.Forms
                 }
                 else
                 {
-                    
+
                     return;
                 }
             }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            frmDanhSachPhong_Load(sender, e);
         }
     }
 }

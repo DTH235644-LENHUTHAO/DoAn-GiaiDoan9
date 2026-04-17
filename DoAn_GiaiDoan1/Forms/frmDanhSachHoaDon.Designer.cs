@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            btnInHoaDon = new Button();
             groupBox2 = new GroupBox();
             dataGridView1 = new DataGridView();
             ID = new DataGridViewTextBoxColumn();
@@ -45,7 +46,6 @@
             TongTien = new DataGridViewTextBoxColumn();
             XemChiTiet = new DataGridViewLinkColumn();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
-            btnInHoaDon = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -59,6 +59,17 @@
             groupBox1.Size = new Size(1948, 141);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
+            // 
+            // btnInHoaDon
+            // 
+            btnInHoaDon.ForeColor = Color.FromArgb(0, 192, 0);
+            btnInHoaDon.Location = new Point(1613, 49);
+            btnInHoaDon.Name = "btnInHoaDon";
+            btnInHoaDon.Size = new Size(252, 60);
+            btnInHoaDon.TabIndex = 0;
+            btnInHoaDon.Text = "In hóa đơn";
+            btnInHoaDon.UseVisualStyleBackColor = true;
+            btnInHoaDon.Click += btnInHoaDon_Click;
             // 
             // groupBox2
             // 
@@ -180,16 +191,6 @@
             // 
             sqlCommand1.CommandTimeout = 30;
             sqlCommand1.EnableOptimizedParameterBinding = false;
-            // 
-            // btnInHoaDon
-            // 
-            btnInHoaDon.Location = new Point(1613, 53);
-            btnInHoaDon.Name = "btnInHoaDon";
-            btnInHoaDon.Size = new Size(192, 46);
-            btnInHoaDon.TabIndex = 0;
-            btnInHoaDon.Text = "In hóa đơn";
-            btnInHoaDon.UseVisualStyleBackColor = true;
-            btnInHoaDon.Click += btnInHoaDon_Click;
             // 
             // frmDanhSachHoaDon
             // 

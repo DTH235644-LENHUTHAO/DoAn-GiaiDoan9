@@ -70,6 +70,16 @@ namespace QuanLyQuanKaraoke.Forms
             context.DatPhong.Add(dp);
             context.SaveChanges();
 
+            HoaDon hd = new HoaDon
+            {
+                DatPhongID = dp.ID,
+                ThoiGianLap = DateTime.Now,
+                TongTien = 0
+            };
+
+            context.HoaDon.Add(hd);
+            context.SaveChanges();
+
             MessageBox.Show("Mở phòng thành công!");
             this.Close();
         }

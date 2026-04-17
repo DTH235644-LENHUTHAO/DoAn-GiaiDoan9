@@ -30,12 +30,22 @@ namespace QuanLyQuanKaraoke.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<string>("GhiChu")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal>("DonGia")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("HoaDonID")
                         .HasColumnType("int");
+
+                    b.Property<string>("Loai")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("SoLuong")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Ten")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("ThanhTien")
                         .HasColumnType("decimal(18,2)");

@@ -49,11 +49,11 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(dataGridView1);
-            groupBox1.Location = new Point(22, 314);
+            groupBox1.Location = new Point(22, 247);
             groupBox1.Margin = new Padding(4);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(4);
-            groupBox1.Size = new Size(1955, 692);
+            groupBox1.Size = new Size(1955, 759);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Lịch sử dùng phòng";
@@ -71,7 +71,7 @@
             dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 82;
-            dataGridView1.Size = new Size(1947, 647);
+            dataGridView1.Size = new Size(1947, 714);
             dataGridView1.TabIndex = 0;
             // 
             // ID
@@ -144,15 +144,16 @@
             groupBox2.Margin = new Padding(4);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(4);
-            groupBox2.Size = new Size(1951, 277);
+            groupBox2.Size = new Size(1951, 189);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             // 
             // btnLapHoaDon
             // 
-            btnLapHoaDon.Location = new Point(1649, 113);
+            btnLapHoaDon.ForeColor = Color.Green;
+            btnLapHoaDon.Location = new Point(1629, 60);
             btnLapHoaDon.Name = "btnLapHoaDon";
-            btnLapHoaDon.Size = new Size(225, 46);
+            btnLapHoaDon.Size = new Size(225, 67);
             btnLapHoaDon.TabIndex = 0;
             btnLapHoaDon.Text = "Lập hóa đơn";
             btnLapHoaDon.UseVisualStyleBackColor = true;

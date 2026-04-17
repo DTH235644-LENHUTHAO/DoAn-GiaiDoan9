@@ -59,12 +59,13 @@
             // 
             // btnMoPhong
             // 
+            btnMoPhong.BackColor = Color.LightGreen;
             btnMoPhong.Location = new Point(1327, 90);
             btnMoPhong.Name = "btnMoPhong";
             btnMoPhong.Size = new Size(184, 45);
             btnMoPhong.TabIndex = 4;
             btnMoPhong.Text = "Mở phòng";
-            btnMoPhong.UseVisualStyleBackColor = true;
+            btnMoPhong.UseVisualStyleBackColor = false;
             btnMoPhong.Click += btnMoPhong_Click;
             // 
             // label1

@@ -34,6 +34,8 @@ namespace QuanLyQuanKaraoke.Forms
         frmThongKeDoanhThu thongKeDoanhThu = null;
         frmThongKeDichVu thongKeDichVu = null;
         frmThanhToan thanhToan = null;
+        frmDoiMatKhau doiMatKhau = null;
+        frmThongTinPhanMem thongTinPhanMem = null;
         string TenNhanVien = "";
         public static int NVID = 0;
         private void mnuNhanVien_Click(object sender, EventArgs e)
@@ -193,6 +195,7 @@ namespace QuanLyQuanKaraoke.Forms
             mnuThongKeDichVu.Enabled = false;
             mnuThongKeDoanhThu.Enabled = false;
             mnuKhuyenMai.Enabled = false;
+
             // Hiển thị thông tin trên thanh trạng thái
             lblTrangThai.Text = "Chưa đăng nhập.";
         }
@@ -212,6 +215,7 @@ namespace QuanLyQuanKaraoke.Forms
             mnuKhuyenMai.Enabled = true;
             mnuThongKeDichVu.Enabled = true;
             mnuThongKeDoanhThu.Enabled = true;
+
             // Hiển thị thông tin trên thanh trạng thái
             lblTrangThai.Text = "Quản lý: " + TenNhanVien;
         }
@@ -225,6 +229,7 @@ namespace QuanLyQuanKaraoke.Forms
             mnuDichVu.Enabled = false;
             mnuNhanVien.Enabled = false;
             mnuKhuyenMai.Enabled = true;
+
             // Sáng đăng xuất và các chức năng nhân viên được phép
             mnuDangXuat.Enabled = true;
             mnuDoiMatKhau.Enabled = true;
@@ -239,6 +244,19 @@ namespace QuanLyQuanKaraoke.Forms
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            menuStrip1.Font = new Font("Times New Roman", 12, FontStyle.Bold);
+            menuStrip1.Padding = new Padding(10, 8, 10, 8);
+
+            menuStrip1.BackColor = Color.FromArgb(0, 120, 215);
+            menuStrip1.ForeColor = Color.White;
+
+            foreach (Control ctl in this.Controls)
+            {
+                if (ctl is MdiClient)
+                {
+                    ctl.BackColor = Color.FromArgb(220, 240, 250);
+                }
+            }
             ChuaDangNhap();
 
 
@@ -336,6 +354,30 @@ namespace QuanLyQuanKaraoke.Forms
         {
             frmDoiMatKhau f = new frmDoiMatKhau();
             f.ShowDialog();
+        }
+
+        private void mnuChiTietHoaDon_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mnuHuongDanSuDung_Click(object sender, EventArgs e)
+        {
+            string path = Application.StartupPath + @"\HuongDanSuDung.pdf";
+
+            ProcessStartInfo psi = new ProcessStartInfo()
+            {
+                FileName = path,
+                UseShellExecute = true
+            };
+
+            Process.Start(psi);
+        }
+
+        private void mnuThongTinPhanMem_Click(object sender, EventArgs e)
+        {
+            frmThongTinPhanMem f = new frmThongTinPhanMem();
+            f.ShowDialog(); 
         }
     }
 }

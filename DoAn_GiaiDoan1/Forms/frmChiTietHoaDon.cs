@@ -31,7 +31,10 @@ namespace QuanLyQuanKaraoke.Forms
                 {
                     r.ID,
                     r.HoaDonID,
-                    r.GhiChu,
+                    r.Loai,
+                    r.Ten,
+                    r.SoLuong,
+                    r.DonGia,
                     r.ThanhTien
                 })
                 .ToList();
